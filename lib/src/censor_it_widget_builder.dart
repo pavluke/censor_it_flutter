@@ -43,7 +43,7 @@ class _CensorItWidgetBuilderState extends State<CensorItWidgetBuilder> {
         pattern: widget.pattern ?? LanguagePattern.all,
       ),
       style: widget.normalTextStyle(context),
-      child: widget.builder(context, ''),
+      childBuilder: (word) => widget.builder(context, word),
       alignment: widget.alignment ?? PlaceholderAlignment.middle,
       baseline: widget.baseline ?? TextBaseline.ideographic,
     );
