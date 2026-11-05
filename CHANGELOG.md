@@ -1,3 +1,10 @@
+## 2.2.0
+
+- Migrate to [material_ui](https://pub.dev/packages/material_ui) package
+- Bump [censor_it](https://pub.dev/packages/censor_it) to ^2.2.0
+- Require Dart 3.13+ / Flutter 3.47+
+- Add `build/**` to analyzer excludes
+
 ## 2.1.2
 
 - Add [pavluke_lints](https://pub.dev/packages/pavluke_lints)

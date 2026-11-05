@@ -51,7 +51,7 @@ Add censor_it_flutter to your `pubspec.yaml`:
 
 ```yaml
 dependencies:
-  censor_it_flutter: ^2.1.2
+  censor_it_flutter: ^2.2.0
 ```
 
 Or using the command:
