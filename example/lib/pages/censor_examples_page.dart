@@ -1,4 +1,4 @@
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 
 import '../tabs/overlay_builder_tab.dart';
 import '../tabs/text_builder_tab.dart';
@@ -19,7 +19,8 @@ class _CensorExamplesPageState extends State<CensorExamplesPage>
   late final TextEditingController _textController;
 
   var _currentText =
-      'This is a fucking example with some shit words and bitch ass profanity to test the censor';
+      'This is a fucking example with some shit words '
+      'and bitch ass profanity to test the censor';
 
   @override
   void initState() {
@@ -37,43 +38,45 @@ class _CensorExamplesPageState extends State<CensorExamplesPage>
 
   @override
   Widget build(BuildContext context) => Scaffold(
-        backgroundColor: Colors.grey[50],
-        appBar: AppBar(
-          title: const Text('Flutter CensorIt Demo',
-              style: AppTextStyles.appBarTitle),
-          backgroundColor: Colors.deepPurple,
-          foregroundColor: Colors.white,
-          elevation: 0,
-          bottom: TabBar(
+    backgroundColor: Colors.grey[50],
+    appBar: AppBar(
+      title: const Text(
+        'Flutter CensorIt Demo',
+        style: AppTextStyles.appBarTitle,
+      ),
+      backgroundColor: Colors.deepPurple,
+      foregroundColor: Colors.white,
+      elevation: 0,
+      bottom: TabBar(
+        controller: _tabController,
+        indicatorColor: Colors.white,
+        indicatorWeight: 3,
+        labelColor: Colors.white,
+        unselectedLabelColor: Colors.white70,
+        tabs: const [
+          Tab(text: 'Text Builder'),
+          Tab(text: 'Widget Builder'),
+          Tab(text: 'Overlay Builder'),
+        ],
+      ),
+    ),
+    body: Column(
+      children: [
+        Expanded(
+          child: TabBarView(
             controller: _tabController,
-            indicatorColor: Colors.white,
-            indicatorWeight: 3,
-            labelColor: Colors.white,
-            unselectedLabelColor: Colors.white70,
-            tabs: const [
-              Tab(text: 'Text Builder'),
-              Tab(text: 'Widget Builder'),
-              Tab(text: 'Overlay Builder'),
+            children: [
+              TextBuilderTab(text: _currentText),
+              WidgetBuilderTab(text: _currentText),
+              OverlayBuilderTab(text: _currentText),
             ],
           ),
         ),
-        body: Column(
-          children: [
-            Expanded(
-              child: TabBarView(
-                controller: _tabController,
-                children: [
-                  TextBuilderTab(text: _currentText),
-                  WidgetBuilderTab(text: _currentText),
-                  OverlayBuilderTab(text: _currentText),
-                ],
-              ),
-            ),
-            InputSection(
-              textController: _textController,
-              onSend: () => setState(() => _currentText = _textController.text),
-            ),
-          ],
+        InputSection(
+          textController: _textController,
+          onSend: () => setState(() => _currentText = _textController.text),
         ),
-      );
+      ],
+    ),
+  );
 }

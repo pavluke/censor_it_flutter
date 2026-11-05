@@ -1,4 +1,4 @@
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 
 import '../theme/text_styles.dart';
 
@@ -9,10 +9,10 @@ class ExampleLabel extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => Padding(
-        padding: const EdgeInsets.only(bottom: 8, left: 4),
-        child: Text(
-          text,
-          style: AppTextStyles.exampleLabel.copyWith(color: Colors.grey[700]),
-        ),
-      );
+    padding: const .only(bottom: 8, left: 4),
+    child: Text(
+      text,
+      style: AppTextStyles.exampleLabel.copyWith(color: Colors.grey[700]),
+    ),
+  );
 }

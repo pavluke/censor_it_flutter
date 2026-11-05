@@ -1,4 +1,4 @@
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 
 abstract final class AppTextStyles {
   static const normal = TextStyle(
@@ -11,40 +11,34 @@ abstract final class AppTextStyles {
     fontSize: 18,
     height: 1.5,
     color: Colors.red,
-    fontWeight: FontWeight.bold,
+    fontWeight: .bold,
   );
 
   static const censoredOrange = TextStyle(
     fontSize: 18,
     height: 1.5,
     color: Colors.orange,
-    fontWeight: FontWeight.w900,
+    fontWeight: .w900,
   );
 
   static const censoredBold = TextStyle(
     fontSize: 18,
     height: 1.5,
-    fontWeight: FontWeight.bold,
+    fontWeight: .bold,
   );
 
   static const censoredSpaced = TextStyle(
     fontSize: 18,
     height: 1.5,
-    fontWeight: FontWeight.bold,
+    fontWeight: .bold,
     letterSpacing: 1,
   );
 
-  static const exampleLabel = TextStyle(
-    fontSize: 14,
-    fontWeight: FontWeight.w600,
-  );
+  static const exampleLabel = TextStyle(fontSize: 14, fontWeight: .w600);
 
-  static const appBarTitle = TextStyle(fontWeight: FontWeight.w600);
+  static const appBarTitle = TextStyle(fontWeight: .w600);
 
-  static const infoCardTitle = TextStyle(
-    fontSize: 16,
-    fontWeight: FontWeight.bold,
-  );
+  static const infoCardTitle = TextStyle(fontSize: 16, fontWeight: .bold);
 
   static const infoCardDescription = TextStyle(fontSize: 13);
 }
