@@ -1,4 +1,5 @@
-import 'package:flutter/material.dart';
+import 'package:censor_it/censor_it.dart';
+import 'package:material_ui/material_ui.dart';
 
 import 'base_span_builder.dart';
 import 'span_builder.dart';
@@ -39,18 +40,32 @@ class TextSpanBuilder extends BaseSpanBuilder<TextSpan> {
 
   @override
   TextSpan buildPlainSpan(String text) => TextSpan(
-        text: text,
-        style: style,
-      );
+    text: text,
+    style: style,
+  );
 
   @override
   TextSpan buildCensoredSpan(
     String originalWord,
     int index,
     bool revealAll,
-  ) =>
-      TextSpan(
-        text: revealAll ? originalWord : censorIt.censored,
-        style: censoredStyle,
-      );
+  ) => TextSpan(
+    text: revealAll ? originalWord : _maskedWord(originalWord, index),
+    style: censoredStyle,
+  );
+
+  /// Returns the masked fragment that corresponds to the match at [index].
+  ///
+  /// [CensorIt.censored] holds the whole masked text, so only the part
+  /// covered by this particular match is taken from it.
+  String _maskedWord(String originalWord, int index) {
+    final match = censorIt.matches[index];
+    final censored = censorIt.censored;
+
+    if (match.end > censored.length) {
+      return '*' * originalWord.length;
+    }
+
+    return censored.substring(match.start, match.end);
+  }
 }

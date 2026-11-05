@@ -96,9 +96,15 @@ class _CensorItOverlayBuilderState extends State<CensorItOverlayBuilder> {
           textDirection: TextDirection.ltr,
         )..layout(maxWidth: constraints.maxWidth);
 
+        // With unbounded constraints (e.g. inside a Row) the text takes
+        // the width of its content instead of an infinite one.
+        final width = constraints.hasBoundedWidth
+            ? constraints.maxWidth
+            : painter.width;
+
         Widget textWidget = CustomPaint(
           size: Size(
-            constraints.maxWidth,
+            width,
             painter.height,
           ),
           painter: _TextPainterAdapter(
@@ -136,7 +142,7 @@ class _CensorItOverlayBuilderState extends State<CensorItOverlayBuilder> {
         }
 
         textWidget = SizedBox(
-          width: constraints.maxWidth,
+          width: width,
           height: painter.height,
           child: Stack(children: [textWidget, ...overlays]),
         );
@@ -161,9 +167,9 @@ class _TextPainterAdapter extends CustomPainter {
 
   @override
   void paint(Canvas canvas, Size size) => textPainter.paint(
-        canvas,
-        Offset.zero,
-      );
+    canvas,
+    Offset.zero,
+  );
 
   @override
   bool shouldRepaint(_TextPainterAdapter oldDelegate) => false;
